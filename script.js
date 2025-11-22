@@ -4,133 +4,89 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 'service-plumbing',
             title: 'Plumbing Repairs & Installation',
             desc: 'Fast repairs, leaks, bathroom installs and drain clearing by certified plumbers.',
-            svg: `<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="plumbingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2E8B57"/>
-                        <stop offset="100%" stop-color="#228B22"/>
-                    </linearGradient>
-                </defs>
-                <rect width="800" height="600" fill="url(#plumbingGrad)"/>
-                <path d="M200,300 L300,200 L500,400 L400,500 Z" fill="#FFFFFF" opacity="0.1"/>
-                <circle cx="400" cy="300" r="80" fill="#FFFFFF" opacity="0.2"/>
-                <path d="M350,250 L450,350 M350,350 L450,250" stroke="#FFFFFF" stroke-width="8" opacity="0.3"/>
-                <text x="400" y="320" text-anchor="middle" fill="#FFFFFF" font-size="48" font-weight="bold">🚰</text>
-                <text x="400" y="500" text-anchor="middle" fill="#FFFFFF" font-size="32" font-family="Arial">Plumbing</text>
-            </svg>`,
+            image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
             url: 'service-plumbing.html'
         },
         {
             id: 'service-heating',
             title: 'Heating & Boiler Services',
             desc: 'Boiler repairs, servicing and system optimisation to keep you warm and efficient.',
-            svg: `<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="heatingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2E8B57"/>
-                        <stop offset="100%" stop-color="#228B22"/>
-                    </linearGradient>
-                </defs>
-                <rect width="800" height="600" fill="url(#heatingGrad)"/>
-                <circle cx="400" cy="300" r="120" fill="#FFFFFF" opacity="0.1"/>
-                <rect x="300" y="200" width="200" height="200" fill="#FFFFFF" opacity="0.15" rx="20"/>
-                <path d="M350,250 L450,250 L450,350 L350,350 Z" fill="#FFFFFF" opacity="0.2"/>
-                <text x="400" y="320" text-anchor="middle" fill="#FFFFFF" font-size="48" font-weight="bold">🔥</text>
-                <text x="400" y="500" text-anchor="middle" fill="#FFFFFF" font-size="32" font-family="Arial">Heating</text>
-            </svg>`,
+            image: 'https://images.unsplash.com/photo-1580522154071-c6ca47a4ad5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
             url: 'service-heating.html'
         },
         {
             id: 'service-gas',
             title: 'Gas Safety & Installations',
             desc: 'Certified gas engineers for safe installations, inspections and repairs.',
-            svg: `<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="gasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2E8B57"/>
-                        <stop offset="100%" stop-color="#228B22"/>
-                    </linearGradient>
-                </defs>
-                <rect width="800" height="600" fill="url(#gasGrad)"/>
-                <circle cx="400" cy="300" r="100" fill="#FFFFFF" opacity="0.1"/>
-                <path d="M350,250 Q400,200 450,250 T550,250" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.3"/>
-                <text x="400" y="320" text-anchor="middle" fill="#FFFFFF" font-size="48" font-weight="bold">⛽</text>
-                <text x="400" y="500" text-anchor="middle" fill="#FFFFFF" font-size="32" font-family="Arial">Gas Safety</text>
-            </svg>`,
+            image: 'https://images.unsplash.com/photo-1600891964097-9c9a0b7db1a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
             url: 'service-gas.html'
         },
         {
             id: 'service-maintenance',
             title: 'Preventative Maintenance',
             desc: 'Routine maintenance plans to preserve and extend the lifetime of home systems.',
-            svg: `<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="maintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2E8B57"/>
-                        <stop offset="100%" stop-color="#228B22"/>
-                    </linearGradient>
-                </defs>
-                <rect width="800" height="600" fill="url(#maintGrad)"/>
-                <path d="M300,200 L500,200 L550,300 L500,400 L300,400 L250,300 Z" fill="#FFFFFF" opacity="0.1"/>
-                <circle cx="400" cy="300" r="60" fill="#FFFFFF" opacity="0.2"/>
-                <text x="400" y="320" text-anchor="middle" fill="#FFFFFF" font-size="48" font-weight="bold">🔧</text>
-                <text x="400" y="500" text-anchor="middle" fill="#FFFFFF" font-size="32" font-family="Arial">Maintenance</text>
-            </svg>`,
+            image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
             url: 'service-maintenance.html'
         }
     ];
 
-    // Slider injection
+    // Slider injection with real images
     const slider = document.getElementById('slider');
     let currentSlide = 0;
 
-    services.forEach((s, idx) => {
-        const slide = document.createElement('div');
-        slide.className = 'slide';
-        slide.style.opacity = idx === 0 ? '1' : '0';
-        slide.style.transform = idx === 0 ? 'translateY(0)' : 'translateY(20px)';
-        slide.innerHTML = `
-            <div class="slide-copy">
-                <h2>${s.title}</h2>
-                <p>${s.desc}</p>
-                <a class="btn" href="${s.url}">View Details</a>
-            </div>
-            <div class="svg-bg">${s.svg}</div>
-        `;
-        slider.appendChild(slide);
-    });
-
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    
-    if (document.querySelector('.slide-next')) {
-        document.querySelector('.slide-next').addEventListener('click', () => showSlide(currentSlide + 1));
-    }
-    
-    if (document.querySelector('.slide-prev')) {
-        document.querySelector('.slide-prev').addEventListener('click', () => showSlide(currentSlide - 1));
-    }
-
-    function showSlide(n) {
-        currentSlide = (n + slides.length) % slides.length;
-        slides.forEach((s, i) => {
-            s.style.opacity = i === currentSlide ? '1' : '0';
-            s.style.transform = i === currentSlide ? 'translateY(0)' : 'translateY(20px)';
+    if (slider) {
+        services.forEach((s, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            slide.style.opacity = idx === 0 ? '1' : '0';
+            slide.style.transform = idx === 0 ? 'translateY(0)' : 'translateY(20px)';
+            slide.innerHTML = `
+                <div class="slide-copy">
+                    <h2>${s.title}</h2>
+                    <p>${s.desc}</p>
+                    <a class="btn" href="${s.url}">View Details</a>
+                </div>
+                <div class="real-image-bg ${s.id.replace('service-', '')}-image">
+                    <img src="${s.image}" alt="${s.title}" loading="lazy">
+                </div>
+            `;
+            slider.appendChild(slide);
         });
+
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        
+        if (document.querySelector('.slide-next')) {
+            document.querySelector('.slide-next').addEventListener('click', () => showSlide(currentSlide + 1));
+        }
+        
+        if (document.querySelector('.slide-prev')) {
+            document.querySelector('.slide-prev').addEventListener('click', () => showSlide(currentSlide - 1));
+        }
+
+        function showSlide(n) {
+            currentSlide = (n + slides.length) % slides.length;
+            slides.forEach((s, i) => {
+                s.style.opacity = i === currentSlide ? '1' : '0';
+                s.style.transform = i === currentSlide ? 'translateY(0)' : 'translateY(20px)';
+            });
+        }
+
+        // Auto-slide every 5 seconds
+        if (slides.length > 1) {
+            setInterval(() => showSlide(currentSlide + 1), 5000);
+        }
     }
 
-    // Auto-slide every 5 seconds
-    if (slides.length > 1) {
-        setInterval(() => showSlide(currentSlide + 1), 5000);
-    }
-
-    // Services preview
+    // Services preview with real images
     const servicesPreview = document.getElementById('services-preview');
     if (servicesPreview) {
         services.forEach((s) => {
             const block = document.createElement('section');
             block.className = 'service-block';
             block.innerHTML = `
-                <div class="svg-preview">${s.svg}</div>
+                <div class="real-image-preview">
+                    <img src="${s.image}" alt="${s.title}" loading="lazy">
+                </div>
                 <div class="copy">
                     <h3>${s.title}</h3>
                     <p class="lead dropcap">${s.desc} Learn more about how we deliver reliable solutions for every home.</p>
@@ -141,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // News section with relevant content
+    // News section
     const sampleNews = [
         {
             title: 'How to Reduce Winter Heating Bills',
@@ -245,3 +201,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Add CSS for real image previews
+const style = document.createElement('style');
+style.textContent = `
+    .real-image-preview {
+        width: 48%;
+        height: 320px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .real-image-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .real-image-preview:hover img {
+        transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+        .real-image-preview {
+            width: 100%;
+            height: 250px;
+        }
+    }
+`;
+document.head.appendChild(style);
