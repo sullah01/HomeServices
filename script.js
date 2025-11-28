@@ -204,33 +204,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Add CSS for real image previews
-const style = document.createElement('style');
-style.textContent = `
-    .real-image-preview {
-        width: 48%;
-        height: 320px;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .real-image-preview img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    
-    .real-image-preview:hover img {
-        transform: scale(1.05);
-    }
-    
-    @media (max-width: 768px) {
-        .real-image-preview {
-            width: 100%;
-            height: 250px;
-        }
-    }
-`;
-document.head.appendChild(style);
