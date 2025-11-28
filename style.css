@@ -788,3 +788,20 @@ body {
         font-size: 3rem;
     }
 }
+
+
+/* Certification Section Responsive */
+@media (max-width: 768px) {
+    .certification-section {
+        padding: 2rem 0 !important;
+    }
+    
+    .certification-logos {
+        gap: 2rem !important;
+        flex-direction: column !important;
+    }
+    
+    .certification-item img {
+        height: 60px !important;
+    }
+}
