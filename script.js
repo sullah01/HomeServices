@@ -30,9 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // Slider injection with real images
+        // Slider injection with real images
     const slider = document.getElementById('slider');
     let currentSlide = 0;
+    let slides = []; // Make slides accessible globally
 
     if (slider) {
         services.forEach((s, idx) => {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="slide-copy">
                     <h2>${s.title}</h2>
                     <p>${s.desc}</p>
-                    <a class="btn" href="${s.url}">View Details</a>
+                    <button class="btn view-details-btn" data-service-index="${idx}">View Details</button>
                 </div>
                 <div class="real-image-bg ${s.id.replace('service-', '')}-image">
                     <img src="${s.image}" alt="${s.title}" loading="lazy">
@@ -53,7 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
             slider.appendChild(slide);
         });
 
-        const slides = Array.from(document.querySelectorAll('.slide'));
+        slides = Array.from(document.querySelectorAll('.slide'));
+        
+        // Add click handler for View Details buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('view-details-btn')) {
+                const serviceIndex = parseInt(e.target.getAttribute('data-service-index'));
+                const serviceUrl = services[serviceIndex].url;
+                window.location.href = serviceUrl;
+                return;
+            }
+        });
         
         if (document.querySelector('.slide-next')) {
             document.querySelector('.slide-next').addEventListener('click', () => showSlide(currentSlide + 1));
@@ -75,14 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (slides.length > 1) {
             setInterval(() => showSlide(currentSlide + 1), 5000);
         }
-    // Fix for View Details buttons to use current slide
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn') && e.target.closest('.slide')) {
-            e.preventDefault();
-            const currentService = services[currentSlide];
-            window.location.href = currentService.url;
-        }
-    });
     }
 
     // Services preview with real images
