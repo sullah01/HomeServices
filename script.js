@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             url: 'service-gas.html'
         }
     ];
-
-        // Slider injection with real images - FIXED VERSION
+        // Slider injection with real images - DEFINITE FIX
     const slider = document.getElementById('slider');
     let currentSlide = 0;
 
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             slide.className = 'slide';
             slide.style.opacity = idx === 0 ? '1' : '0';
             slide.style.transform = idx === 0 ? 'translateY(0)' : 'translateY(20px)';
-            slide.style.pointerEvents = idx === 0 ? 'auto' : 'none'; // Prevent clicks on hidden slides
+            slide.style.zIndex = idx === 0 ? '2' : '1'; // Active slide gets higher z-index
             slide.innerHTML = `
                 <div class="slide-copy">
                     <h2>${s.title}</h2>
@@ -57,11 +56,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const slides = Array.from(document.querySelectorAll('.slide'));
         
         // Single click handler for all buttons
-        document.addEventListener('click', function(e) {
+        slider.addEventListener('click', function(e) {
             if (e.target.classList.contains('view-details-btn')) {
                 e.preventDefault();
-                const url = e.target.getAttribute('data-url');
-                console.log('Navigating to:', url); // Debug log
+                e.stopPropagation(); // Prevent event bubbling
+                
+                // Get the active slide's button
+                const activeSlide = slides[currentSlide];
+                const activeButton = activeSlide.querySelector('.view-details-btn');
+                const url = activeButton.getAttribute('data-url');
+                
+                console.log('Active slide:', currentSlide, 'Navigating to:', url);
                 window.location.href = url;
             }
         });
@@ -79,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             slides.forEach((s, i) => {
                 s.style.opacity = i === currentSlide ? '1' : '0';
                 s.style.transform = i === currentSlide ? 'translateY(0)' : 'translateY(20px)';
-                s.style.pointerEvents = i === currentSlide ? 'auto' : 'none'; // Only allow clicks on active slide
+                s.style.zIndex = i === currentSlide ? '2' : '1'; // Update z-index
             });
         }
 
