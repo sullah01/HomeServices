@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-            // Slider injection with real images
+             // Slider injection with real images
     const slider = document.getElementById('slider');
     let currentSlide = 0;
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="slide-copy">
                     <h2>${s.title}</h2>
                     <p>${s.desc}</p>
-                    <button class="btn view-details-btn">View Details</button>
+                    <button class="btn view-details-btn" onclick="window.location.href='${s.url}'">View Details</button>
                 </div>
                 <div class="real-image-bg ${s.id.replace('service-', '')}-image">
                     <img src="${s.image}" alt="${s.title}" loading="lazy">
@@ -54,14 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const slides = Array.from(document.querySelectorAll('.slide'));
-        
-        // Add single click handler for all View Details buttons
-        slider.addEventListener('click', function(e) {
-            if (e.target.classList.contains('view-details-btn')) {
-                const serviceUrl = services[currentSlide].url;
-                window.location.href = serviceUrl;
-            }
-        });
         
         if (document.querySelector('.slide-next')) {
             document.querySelector('.slide-next').addEventListener('click', () => showSlide(currentSlide + 1));
