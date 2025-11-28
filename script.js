@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             // Send email using FormSubmit
-            fetch('https://formsubmit.co/ajax/bilalazeem@icloud.com', {
+            fetch('https://formsubmit.co/ajax/info@247homefixexperts.com', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
