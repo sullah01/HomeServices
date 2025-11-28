@@ -75,6 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (slides.length > 1) {
             setInterval(() => showSlide(currentSlide + 1), 5000);
         }
+    // Fix for View Details buttons to use current slide
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn') && e.target.closest('.slide')) {
+            e.preventDefault();
+            const currentService = services[currentSlide];
+            window.location.href = currentService.url;
+        }
+    });
     }
 
     // Services preview with real images
