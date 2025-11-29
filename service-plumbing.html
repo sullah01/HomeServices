@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Professional Plumbing Services — HomeFix Experts</title>
+  <title>Professional Plumbing Services — 24/7 HomeFix Experts | Emergency Plumbers</title>
+  <meta name="description" content="24/7 emergency plumbing services from certified plumbers. Burst pipes, leaks, drain cleaning and complete bathroom installations.">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <header class="site-header">
@@ -24,7 +26,7 @@
   <main class="container main-content">
     <article class="service-detail">
       <div class="service-hero">
-        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Plumbing Services">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Plumbing Services" loading="lazy">
         <div class="service-hero-copy">
           <h1>Professional Plumbing Services</h1>
           <p class="lead">From a burst pipe in the night to a dream bathroom installation, trust the 247 HomeFix Experts for reliable, professional plumbing.</p>
@@ -51,6 +53,22 @@
 
         <h3>Why Choose Our Plumbing Services?</h3>
         <p>Our team of certified plumbers is equipped with the latest tools and technology to handle any plumbing issue. We provide transparent pricing, guaranteed workmanship, and rapid response times for all your plumbing needs.</p>
+
+        <div class="emergency-banner" style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 1.5rem; border-radius: 10px; margin: 2rem 0; text-align: center;">
+          <div style="display: flex; align-items: center; gap: 1rem; flex-direction: column;">
+            <div style="font-size: 2rem;">
+              <i class="fas fa-tint"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0 0 0.5rem 0; font-size: 1.3rem;">24/7 Plumbing Emergencies</h4>
+              <p style="margin: 0 0 1rem 0; opacity: 0.9;">Burst pipes, major leaks, or blocked drains? We're here to help, day or night.</p>
+              <a href="tel:+447447997440" class="btn" style="background: white; color: #e74c3c; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-phone"></i>
+                Emergency Call: +44 7447 997440
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
     </article>
   </main>
@@ -69,7 +87,35 @@
     </div>
     <div class="copyright">&copy; <span id="year3"></span> HomeFix Experts</div>
   </footer>
-  <script>document.getElementById('year3').textContent = new Date().getFullYear();</script>
-  <script src="js/logo-manager.js"></script>
+
+  <script>
+    document.getElementById('year3').textContent = new Date().getFullYear();
+    
+    // Mobile navigation
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.main-nav').classList.toggle('active');
+    });
+
+    // Close menu when clicking on links
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelector('.main-nav').classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const nav = document.querySelector('.main-nav');
+      const toggle = document.querySelector('.nav-toggle');
+      if (nav.classList.contains('active') && !nav.contains(event.target) && !toggle.contains(event.target)) {
+        nav.classList.remove('active');
+      }
+    });
+
+    // Enhance touch experience
+    if ('ontouchstart' in window) {
+      document.documentElement.classList.add('touch-device');
+    }
+  </script>
 </body>
 </html>
