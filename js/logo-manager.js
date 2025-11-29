@@ -1,65 +1,137 @@
-class LogoManager {
-    constructor() {
-        this.logos = {
-            dark: 'assets/logos/logo-dark.png',
-            light: 'assets/logos/logo-light.png', 
-            primary: 'assets/logos/logo-primary.png'
-        };
-        this.init();
-    }
-
-    init() {
-        this.placeHeaderLogos();
-        this.placeFooterLogos();
-        this.setupLogoObservers();
-    }
-
-    getContrastType(element) {
-        const bgColor = window.getComputedStyle(element).backgroundColor;
-        const rgb = bgColor.match(/\d+/g);
-        
-        if (rgb && rgb.length >= 3) {
-            const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
-            return brightness > 128 ? 'light' : 'dark';
+// Logo Manager for 247 Home Fix Experts
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Logo Manager loaded');
+    
+    // Add CSS for horizontal layout
+    const style = document.createElement('style');
+    style.textContent = `
+        .header-with-logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        return 'primary';
-    }
+        .nav-logo {
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            max-height: 50px !important;
+        }
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        .main-nav a:hover {
+            color: #007bff;
+        }
+        /* Ensure header containers use flex */
+        header, .header, .navbar {
+            display: flex;
+            justify-content: center;
+        }
+        header > div, .header > div, .navbar > div {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .header-with-logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-logo img {
+                height: 40px;
+            }
+            .main-nav {
+                justify-content: center;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 
-    getLogoForBackground(element) {
-        const contrastType = this.getContrastType(element);
-        return this.logos[contrastType === 'light' ? 'dark' : 'light'];
-    }
-
-    placeHeaderLogos() {
-        const headers = document.querySelectorAll('header, .header, .navbar, [role="banner"]');
+    // Function to add logo to headers
+    function addLogoToHeaders() {
+        const headers = document.querySelectorAll('header, .header, .navbar');
         
         headers.forEach(header => {
-            // Check if logo already exists
-            if (!header.querySelector('.logo')) {
-                const logoUrl = this.getLogoForBackground(header);
-                const logoHtml = `
-                    <div class="nav-logo">
-                        <a href="/" class="logo-link">
-                            <img src="${logoUrl}" alt="24 7 Home Fix Experts" class="logo" />
-                        </a>
+            if (!header.querySelector('.nav-logo')) {
+                // Check if header already has navigation
+                const existingNav = header.querySelector('nav, .nav, .navbar-nav, .main-nav, [role="navigation"]');
+                const existingLinks = header.querySelectorAll('a[href*=".html"], a[href^="/"], a[href^="#"]');
+                
+                let navHtml = '';
+                
+                // If we found existing navigation links, use them
+                if (existingNav) {
+                    navHtml = existingNav.outerHTML;
+                    existingNav.remove();
+                } else if (existingLinks.length > 0) {
+                    // Create nav from existing links
+                    navHtml = '<nav class="main-nav">';
+                    existingLinks.forEach(link => {
+                        if (link.parentElement.tagName !== 'LI') {
+                            navHtml += link.outerHTML;
+                            link.remove();
+                        }
+                    });
+                    navHtml += '</nav>';
+                } else {
+                    // Create default navigation
+                    navHtml = `
+                        <nav class="main-nav">
+                            <a href="index.html">Home</a>
+                            <a href="services.html">Services</a>
+                            <a href="about.html">About</a>
+                            <a href="contact.html">Contact</a>
+                        </nav>
+                    `;
+                }
+
+                // Create the full header structure
+                const headerHtml = `
+                    <div class="header-with-logo">
+                        <div class="nav-logo">
+                            <a href="/">
+                                <img src="assets/logos/logo-primary.png" alt="24 7 Home Fix Experts">
+                            </a>
+                        </div>
+                        ${navHtml}
                     </div>
                 `;
-                header.insertAdjacentHTML('afterbegin', logoHtml);
+                
+                // Replace header content with new structure
+                header.innerHTML = headerHtml;
             }
         });
     }
 
-    placeFooterLogos() {
-        const footers = document.querySelectorAll('footer, .footer, [role="contentinfo"]');
+    // Function to add logo to footers
+    function addLogoToFooters() {
+        const footers = document.querySelectorAll('footer, .footer');
         
         footers.forEach(footer => {
-            if (!footer.querySelector('.logo-footer')) {
-                const logoUrl = this.getLogoForBackground(footer);
+            if (!footer.querySelector('.footer-logo')) {
                 const logoHtml = `
                     <div class="footer-logo">
                         <a href="/">
-                            <img src="${logoUrl}" alt="24 7 Home Fix Experts" class="logo-footer" />
+                            <img src="assets/logos/logo-primary.png" alt="24 7 Home Fix Experts" 
+                                 style="max-height: 40px; height: auto; opacity: 0.8;">
                         </a>
                     </div>
                 `;
@@ -68,45 +140,35 @@ class LogoManager {
         });
     }
 
-    setupLogoObservers() {
-        // Update logos on scroll for sticky headers
-        let lastScrollY = window.scrollY;
+    // Function to handle logo selection based on background
+    function setupLogoContrast() {
+        const logoImages = document.querySelectorAll('.nav-logo img, .footer-logo img');
         
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            
-            if (Math.abs(currentScrollY - lastScrollY) > 50) {
-                this.updateStickyHeaderLogos();
-                lastScrollY = currentScrollY;
-            }
-        });
-
-        // Update logos on resize
-        window.addEventListener('resize', () => {
-            this.updateAllLogos();
-        });
-    }
-
-    updateStickyHeaderLogos() {
-        const stickyHeaders = document.querySelectorAll('.sticky-header, .fixed-header');
-        
-        stickyHeaders.forEach(header => {
-            const logos = header.querySelectorAll('.logo');
-            const logoUrl = this.getLogoForBackground(header);
-            
-            logos.forEach(logo => {
-                logo.src = logoUrl;
+        function updateLogos() {
+            logoImages.forEach(logo => {
+                const parent = logo.closest('header, footer, .header, .footer');
+                if (parent) {
+                    const bgColor = window.getComputedStyle(parent).backgroundColor;
+                    const rgb = bgColor.match(/\d+/g);
+                    
+                    if (rgb && rgb.length >= 3) {
+                        const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+                        const logoType = brightness > 128 ? 'dark' : 'light';
+                        logo.src = `assets/logos/logo-${logoType}.png`;
+                    }
+                }
             });
-        });
+        }
+        
+        // Update logos on load and resize
+        updateLogos();
+        window.addEventListener('resize', updateLogos);
     }
 
-    updateAllLogos() {
-        this.placeHeaderLogos();
-        this.placeFooterLogos();
-    }
-}
-
-// Initialize logo manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new LogoManager();
+    // Initialize all functions
+    addLogoToHeaders();
+    addLogoToFooters();
+    setupLogoContrast();
+    
+    console.log('Logo Manager initialized successfully');
 });
