@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .main-nav a {
             text-decoration: none;
-            color: #333;
+            color: white !important;
             font-weight: 500;
             transition: color 0.3s ease;
             white-space: nowrap;
         }
         .main-nav a:hover {
-            color: #007bff;
+            color: #2E8B57;
         }
         /* Ensure header containers use flex */
         header, .header, .navbar {
